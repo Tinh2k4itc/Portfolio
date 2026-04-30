@@ -570,6 +570,8 @@ nav button:hover::after {
 
 .tech-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 1.4rem);
 }
 
 .tech-group,
@@ -615,32 +617,49 @@ nav button:hover::after {
 }
 
 .tech-group {
-  padding: 0.65rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 338px;
+  padding: 0.95rem;
 }
 
 .tech-group h3 {
-  margin: 0 0 0.6rem;
+  min-height: 28px;
+  margin: 0 0 0.85rem;
   text-align: center;
   text-transform: uppercase;
   color: #eafcff;
+  line-height: 1.2;
 }
 
 .skill-tiles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
+  grid-auto-rows: 1fr;
+  align-content: start;
+  gap: 0.75rem;
+  min-height: 0;
 }
 
 .skill-tile {
   display: grid;
-  min-height: 88px;
+  grid-template-rows: auto auto;
+  min-height: 104px;
   place-items: center;
-  padding: 0.75rem 0.5rem;
+  align-content: center;
+  gap: 0.45rem;
+  padding: 0.85rem 0.65rem;
   border: 1px solid var(--line);
   border-radius: 7px;
   text-align: center;
   background: rgba(37, 223, 232, 0.05);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.skill-tile > span:last-child {
+  min-height: 1.35em;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .skill-tile:hover {
@@ -651,8 +670,8 @@ nav button:hover::after {
 
 .skill-mark {
   display: flex;
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   align-items: center;
   justify-content: center;
   gap: 0.18rem;
@@ -1621,7 +1640,8 @@ progress::-moz-progress-bar {
 }
 
 .blockchain-links a,
-.blockchain-cta a {
+.blockchain-cta a,
+.blockchain-cta button {
   display: inline-flex;
   min-height: 38px;
   align-items: center;
@@ -1637,7 +1657,8 @@ progress::-moz-progress-bar {
 }
 
 .blockchain-links a:hover,
-.blockchain-cta a:hover {
+.blockchain-cta a:hover,
+.blockchain-cta button:hover {
   border-color: rgba(52, 211, 153, 0.72);
   background: rgba(52, 211, 153, 0.14);
   transform: translateY(-2px);
@@ -1836,14 +1857,14 @@ progress::-moz-progress-bar {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.blockchain-cta a:first-child {
+.blockchain-cta button {
   min-width: 245px;
   border-color: rgba(52, 211, 153, 0.7);
   color: #ecfff7;
   background: linear-gradient(135deg, #12a86f, #20c987);
 }
 
-.blockchain-cta a:last-child {
+.blockchain-cta a {
   min-width: 190px;
   color: #34d399;
   background: rgba(52, 211, 153, 0.06);

@@ -27,12 +27,21 @@ import {
 } from "react-icons/tb";
 import "./styles.css";
 
+const profileLinks = {
+  github: "https://github.com/Tinh2k4itc/",
+  linkedin: "https://linkedin.com/in/tinhphan/",
+  twitter: "https://twitter.com/",
+  email: "mailto:tinh2004.it@gmail.com",
+  phone: "tel:+84344769469",
+};
+
 const projects = [
   {
     id: "essay",
     title: "AI-Powered Korean Essay Evaluation System",
     subtitle: "Automated Korean essay grading with OCR, KoBERT and AI feedback.",
     image: "/assets/essay-project.png",
+    repository: profileLinks.github,
     role: "Backend & Frontend",
     duration: "Sep 2024 - Mar 2025",
     tags: ["FastAPI", "PyTorch", "KoBERT", "React", "Firebase"],
@@ -47,6 +56,7 @@ const projects = [
     title: "Decentralized Degree Verification System",
     subtitle: "Privacy-preserving blockchain verification for academic credentials.",
     image: "/assets/blockchain-project.png",
+    repository: "https://github.com/Tinh2k4itc/BlockchainCelo",
     role: "Backend Developer",
     duration: "2024",
     tags: ["Solidity", "TypeScript", "Hardhat", "Viem", "Celo"],
@@ -448,9 +458,9 @@ function Hero() {
           </a>
         </div>
         <div className="social-strip" aria-label="Contact links">
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="mailto:tinh.phan@example.com">Email</a>
-          <a href="tel:+84000000000">Phone</a>
+          <a href={profileLinks.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={profileLinks.email}>Email</a>
+          <a href={profileLinks.phone}>Phone</a>
         </div>
       </div>
     </section>
@@ -507,7 +517,7 @@ function FeaturedProjects() {
               </div>
               <p>{project.subtitle}</p>
               <div className="card-actions">
-                <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+                <a href={project.repository} target="_blank" rel="noreferrer">GitHub</a>
                 <button onClick={() => goTo(`project-${project.id}`)}>Live Demo</button>
               </div>
             </div>
@@ -604,9 +614,9 @@ function Contact() {
           <button className="primary" type="button">Send Message</button>
         </form>
         <div className="footer-links">
-          <a href="https://linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://twitter.com/" target="_blank" rel="noreferrer">Twitter</a>
+          <a href={profileLinks.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href={profileLinks.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={profileLinks.twitter} target="_blank" rel="noreferrer">Twitter</a>
         </div>
         <p className="copyright">© 2024 Phan Van Tinh. All rights reserved.</p>
       </div>
@@ -717,7 +727,7 @@ function ProjectDetail({ project }) {
               {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
             </div>
             <div className="detail-actions">
-              <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub Repository</a>
+              <a href={project.repository} target="_blank" rel="noreferrer">GitHub Repository</a>
               <a href="#demo">Live Demo</a>
             </div>
           </div>
@@ -815,7 +825,7 @@ function BlockchainProjectPage({ project }) {
               </div>
             </div>
             <div className="blockchain-links">
-              <a href="https://github.com/" target="_blank" rel="noreferrer">
+              <a href={project.repository} target="_blank" rel="noreferrer">
                 <FaGithub aria-hidden="true" /> View Source Code
               </a>
               <a href="https://celoscan.io/" target="_blank" rel="noreferrer">
@@ -863,8 +873,8 @@ function BlockchainProjectPage({ project }) {
           </section>
 
           <footer className="blockchain-cta">
-            <a href="#project-blockchain">Connect Wallet to Verify</a>
-            <a href="https://github.com/" target="_blank" rel="noreferrer">View Source Code</a>
+            <button type="button" onClick={() => goTo("home")}>Back to Home</button>
+            <a href={project.repository} target="_blank" rel="noreferrer">View Source Code</a>
           </footer>
         </div>
       </section>
