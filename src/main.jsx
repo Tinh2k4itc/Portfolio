@@ -4,6 +4,9 @@ import { FaAws, FaCss3Alt, FaGithub, FaHtml5, FaJava, FaNodeJs } from "react-ico
 import {
   SiBlockchaindotcom,
   SiDocker,
+  SiFastapi,
+  SiFirebase,
+  SiGooglegemini,
   SiJavascript,
   SiNextdotjs,
   SiPytorch,
@@ -18,8 +21,16 @@ import {
 import {
   TbArrowRight,
   TbBrain,
+  TbCameraAi,
+  TbChartBar,
+  TbDatabase,
   TbExternalLink,
+  TbFileTextAi,
+  TbLanguage,
   TbLock,
+  TbMessageChatbot,
+  TbPhotoScan,
+  TbReportAnalytics,
   TbSchool,
   TbSettingsCog,
   TbShieldCheck,
@@ -711,6 +722,10 @@ function ProjectDetail({ project }) {
     return <BlockchainProjectPage project={project} />;
   }
 
+  if (project.id === "essay") {
+    return <EssayProjectPage project={project} />;
+  }
+
   const isEssay = project.id === "essay";
 
   return (
@@ -745,6 +760,146 @@ function ProjectDetail({ project }) {
           ))}
         </section>
       </div>
+    </main>
+  );
+}
+
+function EssayProjectPage({ project }) {
+  const techStack = [
+    { label: "FastAPI", Icon: SiFastapi, color: "#009688" },
+    { label: "PyTorch", Icon: SiPytorch, color: "#ee4c2c" },
+    { label: "KoBERT", Icon: TbLanguage, color: "#5eead4" },
+    { label: "React", Icon: SiReact, color: "#61dafb" },
+    { label: "Firebase", Icon: SiFirebase, color: "#ffca28" },
+  ];
+  const modules = [
+    {
+      title: "Custom OCR Pipeline",
+      text: "Tiền xử lý ảnh Won-go-ji, hiệu chỉnh phối cảnh, tách mực và nhận diện âm tiết Hangul bằng CNN classifier.",
+      Icon: TbPhotoScan,
+      steps: ["Perspective Correction", "Grid Cell Segmentation", "CNN Classification"],
+    },
+    {
+      title: "Hybrid AI Scoring Engine",
+      text: "Kết hợp KoBERT semantic similarity, rubric TOPIK II câu 54, luật ngoại lệ và Gemini để sinh phản hồi học tập.",
+      Icon: TbBrain,
+      steps: ["KoBERT", "Rubric Rules", "Gemini Feedback"],
+    },
+    {
+      title: "Full-stack Architecture",
+      text: "React frontend giao tiếp FastAPI backend, điều phối OCR, scoring, feedback và lưu lịch sử luyện viết bằng Firebase.",
+      Icon: TbReportAnalytics,
+      steps: ["React", "FastAPI", "Firebase"],
+    },
+  ];
+  const metrics = [
+    ["OCR Accuracy", "82.25%", "13,584 validation samples"],
+    ["CER / WER", "17.75%", "character and word error rate"],
+    ["Training Data", "135,840", "AI Hub Hangul syllable images"],
+  ];
+
+  return (
+    <main className="essay-page">
+      <section className="essay-shell">
+        <header className="essay-hero">
+          <div className="essay-hero-copy">
+            <button className="essay-back" type="button" onClick={() => goTo("home")}>
+              Back to Home <TbArrowRight aria-hidden="true" />
+            </button>
+            <h1>AI-Powered Korean Essay Evaluation System</h1>
+            <p className="essay-meta">Role: Backend & Frontend | Duration: Sep 2024 - Mar 2025</p>
+            <p className="essay-summary">
+              AI system for TOPIK II question 54 that converts handwritten Won-go-ji essay images
+              into editable text, scores writing quality and generates personalized feedback for learners.
+            </p>
+            <div className="essay-tech-chips">
+              {techStack.map(({ label, Icon, color }) => (
+                <span key={label} style={{ "--chip-color": color }}>
+                  <Icon aria-hidden="true" /> {label}
+                </span>
+              ))}
+            </div>
+            <div className="essay-actions">
+              <a href={project.repository} target="_blank" rel="noreferrer">GitHub Repository</a>
+              <a href="#essay-system-flow">Live Demo</a>
+            </div>
+          </div>
+        </header>
+
+        <section className="essay-achievement">
+          <h2>Problem & Achievement</h2>
+          <p>
+            Built a complete research prototype for automating handwritten Korean essay grading:
+            OCR recognition, text reconstruction, rubric-based scoring and AI feedback generation.
+          </p>
+          <div className="essay-scope-grid">
+            <span><TbFileTextAi aria-hidden="true" /> TOPIK II Question 54</span>
+            <span><TbCameraAi aria-hidden="true" /> Won-go-ji handwriting input</span>
+            <span><SiGooglegemini aria-hidden="true" /> Gemini-assisted feedback</span>
+          </div>
+        </section>
+
+        <section className="essay-module-grid">
+          {modules.map(({ title, text, Icon, steps }) => (
+            <article className="essay-module-card" key={title}>
+              <div className="essay-module-head">
+                <Icon aria-hidden="true" />
+                <h3>{title}</h3>
+              </div>
+              <p>{text}</p>
+              <div className="essay-step-row">
+                {steps.map((step) => <span key={step}>{step}</span>)}
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section className="essay-flow" id="essay-system-flow">
+          <h2>Raw Image to Graded Result</h2>
+          <div className="essay-flow-track">
+            {[
+              [TbCameraAi, "Upload essay image"],
+              [TbPhotoScan, "OCR & reconstruction"],
+              [TbChartBar, "Rubric scoring"],
+              [TbMessageChatbot, "Feedback generation"],
+            ].map(([Icon, label], index) => (
+              <React.Fragment key={label}>
+                <span className="essay-flow-step"><Icon aria-hidden="true" /> {label}</span>
+                {index < 3 && <TbArrowRight className="essay-flow-arrow" aria-hidden="true" />}
+              </React.Fragment>
+            ))}
+          </div>
+        </section>
+
+        <section className="essay-metric-row">
+          {metrics.map(([label, value, detail]) => (
+            <article key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+              <p>{detail}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="essay-research-notes">
+          <article>
+            <TbDatabase aria-hidden="true" />
+            <h3>Dataset & Training</h3>
+            <p>
+              OCR model was trained on AI Hub Korean handwriting data with 11,170 Hangul syllable
+              classes, 122,256 training samples and 13,584 validation samples.
+            </p>
+          </article>
+          <article>
+            <TbLanguage aria-hidden="true" />
+            <h3>Scoring Strategy</h3>
+            <p>
+              KoBERT embeddings estimate semantic relevance with cosine similarity, while rubric
+              rules control structure, topic relevance, exceptions and TOPIK-specific criteria.
+            </p>
+          </article>
+        </section>
+      </section>
     </main>
   );
 }
